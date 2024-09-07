@@ -80,17 +80,14 @@ fun WelcomeSlideUi(
                         )
                     )
 
-
-
-                    SlideIndicator(
-                        modifier = Modifier.padding(top = 24.dp),
-                        totalIndicators = slideItems.size ,
-                        currentIndicator = pagerState.currentPage
-                    )
-
-
                 }
             }
+        )
+
+        SlideIndicator(
+            modifier = Modifier.padding(bottom = 24.dp),
+            totalIndicators = slideItems.size ,
+            currentIndicator = pagerState.currentPage
         )
 
     }
