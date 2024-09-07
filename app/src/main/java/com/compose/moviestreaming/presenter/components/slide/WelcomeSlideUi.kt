@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.compose.moviestreaming.presenter.components.indicator.SlideIndicator
 import com.compose.moviestreaming.ui.theme.MovieStreamingTheme
 import com.compose.moviestreaming.ui.theme.UrbanistFamily
 
@@ -35,47 +36,66 @@ fun WelcomeSlideUi(
 
 ){
 
-    HorizontalPager(
-        state = pagerState,
-        modifier= Modifier.fillMaxSize(),
-        pageContent = {
-            Column(
-                Modifier.fillMaxSize().padding(24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
-            ) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
-                Text(
-                    text = slideItems[pagerState.currentPage].first,
-                    style = TextStyle(
-                        fontSize = 40.sp,
-                        lineHeight = 48.sp,
-                        fontFamily = UrbanistFamily,
-                        fontWeight = FontWeight.Bold,
-                        color = MovieStreamingTheme.colorScheme.whiteColor,
-                        textAlign = TextAlign.Center
+        HorizontalPager(
+            state = pagerState,
+            modifier= Modifier.fillMaxSize().weight(1f),
+            pageContent = {
+                Column(
+                    Modifier
+                        .fillMaxSize()
+                        .padding(24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Bottom
+                ) {
+
+                    Text(
+                        text = slideItems[pagerState.currentPage].first,
+                        style = TextStyle(
+                            fontSize = 40.sp,
+                            lineHeight = 48.sp,
+                            fontFamily = UrbanistFamily,
+                            fontWeight = FontWeight.Bold,
+                            color = MovieStreamingTheme.colorScheme.whiteColor,
+                            textAlign = TextAlign.Center
+                        )
                     )
-                )
-                Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(24.dp))
 
-                Text(
-                    text = slideItems[pagerState.currentPage].second,
-                    style = TextStyle(
+                    Text(
+                        text = slideItems[pagerState.currentPage].second,
+                        style = TextStyle(
 
-                        fontSize = 18.sp,
-                        lineHeight = 25.2.sp,
-                        fontFamily = UrbanistFamily,
-                        fontWeight = FontWeight.Medium,
-                        color = MovieStreamingTheme.colorScheme.whiteColor,
-                        textAlign = TextAlign.Center,
-                        letterSpacing = 0.2.sp
+                            fontSize = 18.sp,
+                            lineHeight = 25.2.sp,
+                            fontFamily = UrbanistFamily,
+                            fontWeight = FontWeight.Medium,
+                            color = MovieStreamingTheme.colorScheme.whiteColor,
+                            textAlign = TextAlign.Center,
+                            letterSpacing = 0.2.sp
+                        )
                     )
-                )
 
 
+
+                    SlideIndicator(
+                        modifier = Modifier.padding(top = 24.dp),
+                        totalIndicators = slideItems.size ,
+                        currentIndicator = pagerState.currentPage
+                    )
+
+
+                }
             }
-        }
-    )
+        )
+
+    }
+
+
 
 }
 
