@@ -5,7 +5,9 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
@@ -15,7 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.compose.moviestreaming.R
+import com.compose.moviestreaming.presenter.components.button.PrimaryButton
 import com.compose.moviestreaming.presenter.components.slide.WelcomeSlideUi
 import com.compose.moviestreaming.ui.theme.MovieStreamingTheme
 
@@ -76,10 +80,28 @@ fun WelcomeContent (){
 
                )
 
-               WelcomeSlideUi(
-                   slideItems = slideItems,
-                   pagerState = pagerState
+               Column(
+                   modifier = Modifier.fillMaxWidth()
+
                )
+               {
+                   WelcomeSlideUi(
+
+                       modifier = Modifier.weight(1f),
+                       slideItems = slideItems,
+                       pagerState = pagerState
+                   )
+
+                   PrimaryButton(
+
+                       text = "Pular",
+                       modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 24.dp),
+                       onClick = {}
+
+                   )
+
+
+               }
            }
        }
    )
