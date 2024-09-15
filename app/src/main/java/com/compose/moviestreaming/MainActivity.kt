@@ -13,8 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.compose.moviestreaming.presenter.splash.SplashScreen
-import com.compose.moviestreaming.presenter.welcome.WelcomeScreen
+import com.compose.moviestreaming.presenter.screens.splash.SplashScreen
+import com.compose.moviestreaming.presenter.screens.welcome.WelcomeScreen
 import com.compose.moviestreaming.ui.theme.MovieStreamingTheme
 
 class MainActivity : ComponentActivity() {

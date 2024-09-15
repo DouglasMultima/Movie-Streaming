@@ -1,4 +1,4 @@
-package com.compose.moviestreaming.presenter.welcome
+package com.compose.moviestreaming.presenter.screens.welcome
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi

@@ -1,4 +1,4 @@
-package com.compose.moviestreaming.presenter.splash
+package com.compose.moviestreaming.presenter.screens.splash
 
 
 
