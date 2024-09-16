@@ -1,6 +1,7 @@
 package com.compose.moviestreaming.presenter.screens.authentication.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +31,7 @@ import com.compose.moviestreaming.R
 import com.compose.moviestreaming.presenter.components.button.PrimaryButton
 import com.compose.moviestreaming.presenter.components.button.SocialButton
 import com.compose.moviestreaming.presenter.components.divider.HorizontalDividerWithText
+import com.compose.moviestreaming.presenter.components.topAppBar.TopAppBarUI
 import com.compose.moviestreaming.ui.theme.MovieStreamingTheme
 import com.compose.moviestreaming.ui.theme.UrbanistFamily
 
@@ -43,93 +47,100 @@ fun HomeAuthenticationScreen() {
 
 fun HomeAuthenticationContent() {
     Scaffold(
+
+        topBar = {
+
+            TopAppBarUI(
+                onClick = {}
+            )
+        },
+
         containerColor = MovieStreamingTheme.colorScheme.backgroundColor,
+
         content = {paddingValues ->
+
             Column(
-                modifier = Modifier.fillMaxSize().padding(paddingValues),
-
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(paddingValues)
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Column(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(24.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
 
-                    Image(
-                        painter = painterResource(id = R.drawable.placeholder_home_authentication),
-                        contentDescription = null
-                    )
+                Image(
+                    painter = painterResource(id = R.drawable.placeholder_home_authentication),
+                    contentDescription = null
+                )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
-                    Text(
-                        text = stringResource(id = R.string.label_title_authentication_screen),
-                        style = TextStyle(
-                            fontSize = 48.sp,
-                            lineHeight = 54.6.sp,
-                            fontFamily = UrbanistFamily,
-                            fontWeight = FontWeight.Bold,
-                            color = MovieStreamingTheme.colorScheme.textColor,
-                            textAlign = TextAlign.Center
-
-                        )
+                Text(
+                    text = stringResource(id = R.string.label_title_authentication_screen),
+                    style = TextStyle(
+                        fontSize = 48.sp,
+                        lineHeight = 54.6.sp,
+                        fontFamily = UrbanistFamily,
+                        fontWeight = FontWeight.Bold,
+                        color = MovieStreamingTheme.colorScheme.textColor,
+                        textAlign = TextAlign.Center
 
                     )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                )
 
-                    SocialButton(
-                        modifier = Modifier.fillMaxWidth(),
-                        text ="Continuar com o Google",
-                        icon = painterResource(id = R.drawable.ic_google),
-                        isLoading = false,
-                        onClick = {}
-                    )
+                Spacer(modifier = Modifier.height(24.dp))
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                SocialButton(
+                    modifier = Modifier.fillMaxWidth(),
+                    text ="Continuar com o Google",
+                    icon = painterResource(id = R.drawable.ic_google),
+                    isLoading = false,
+                    onClick = {}
+                )
 
-                    SocialButton(
+                Spacer(modifier = Modifier.height(16.dp))
 
-                        modifier = Modifier.fillMaxWidth(),
-                        text ="Continuar com o Facebook",
-                        icon = painterResource(id = R.drawable.ic_facebook),
-                        isLoading = false,
-                        onClick = {}
-                    )
+                SocialButton(
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    modifier = Modifier.fillMaxWidth(),
+                    text ="Continuar com o Facebook",
+                    icon = painterResource(id = R.drawable.ic_facebook),
+                    isLoading = false,
+                    onClick = {}
+                )
 
-                    SocialButton(
+                Spacer(modifier = Modifier.height(16.dp))
 
-                        modifier = Modifier.fillMaxWidth(),
-                        text ="Continuar com o GitHub",
-                        icon = painterResource(id = R.drawable.ic_github),
-                        isLoading = false,
-                        onClick = {}
-                    )
+                SocialButton(
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    modifier = Modifier.fillMaxWidth(),
+                    text ="Continuar com o GitHub",
+                    icon = painterResource(id = R.drawable.ic_github),
+                    isLoading = false,
+                    onClick = {}
+                )
 
-                    HorizontalDividerWithText(
-                        text = stringResource(id = R.string.label_or_authentication_screen)
-                    )
+                Spacer(modifier = Modifier.height(24.dp))
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                HorizontalDividerWithText(
+                    text = stringResource(id = R.string.label_or_authentication_screen)
+                )
 
-                    PrimaryButton(
+                Spacer(modifier = Modifier.height(24.dp))
 
-                        text = stringResource(id = R.string.label_sign_with_password_authentication_screen),
-                        onClick = {},
-                    )
+                PrimaryButton(
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    text = stringResource(id = R.string.label_sign_with_password_authentication_screen),
+                    onClick = {},
+                )
 
 
-                }
 
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(24.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
 
@@ -167,6 +178,8 @@ fun HomeAuthenticationContent() {
 
 
                 }
+
+
 
 
             }

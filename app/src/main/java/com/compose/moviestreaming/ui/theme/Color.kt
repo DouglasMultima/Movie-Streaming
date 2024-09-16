@@ -22,6 +22,11 @@ val SecondaryButtonColorDark = Color(0xFF35383F)
 val SecondaryButtonTextColorLight = Color(0xFFE21221)
 val SecondaryButtonTextColorDark = Color(0xFFFFFFFF)
 
+//TopAppBar
+
+val TopAppBarColorLight = Color(0xFF212121)
+val TopAppBarColorDark = Color(0xFFFFFFFF)
+
 
 
 // Border
@@ -60,3 +65,4 @@ val Greyscale50Color = Color(0xFFFAFAFA)
 // Others
 val WhiteColor = Color(0xFFFFFFFF)
 val BlackColor = Color(0xFF000000)
+val TransparentColor = Color(0x00000000)
