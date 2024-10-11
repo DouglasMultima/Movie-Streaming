@@ -9,6 +9,8 @@ data class MyColorScheme(
     val borderColor: Color,
     val backgroundSocialButtonColor: Color,
     val topAppBarColor : Color,
+    val textFieldBackgroundColor : Color,
+    val alphaDefaultColor : Color,
     val dividerColor: Color,
     val textColor: Color,
     val secondaryButtonColor: Color,
