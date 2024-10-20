@@ -12,4 +12,16 @@
     <string name="label_sign_up_account_authentication_screen">Não tem uma conta?</string>
     <string name="label_sign_up_authentication_screen">Criar conta</string>
 
+    <!-- SignupScreen -->
+
+    <string name="label_title_signup_screen">Crie sua conta</string>
+    <string name="label_input_email_signup_screen">E-mail</string>
+    <string name="label_input_password_signup_screen">Senha</string>
+    <string name="label_button_signup_screen">Criar Conta</string>
+    <string name="label_or_signup_screen">ou continuar com</string>
+    <string name="label_sign_up_account_signup_screen">Já tem uma conta?</string>
+    <string name="label_sign_in_signup_screen">Entrar</string>
+
+
+
 </resources>

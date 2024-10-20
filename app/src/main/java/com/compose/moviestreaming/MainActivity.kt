@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.compose.moviestreaming.presenter.screens.authentication.home.HomeAuthenticationScreen
+import com.compose.moviestreaming.presenter.screens.authentication.signup.screen.SignupScreen
 import com.compose.moviestreaming.presenter.screens.splash.SplashScreen
 import com.compose.moviestreaming.presenter.screens.welcome.WelcomeScreen
 import com.compose.moviestreaming.ui.theme.MovieStreamingTheme
@@ -42,7 +43,9 @@ class MainActivity : ComponentActivity() {
                               //.padding(paddingValues)
 
                       ){
-                          HomeAuthenticationScreen()
+                          SignupScreen(onBackPressed ={})
+
+
                       }
                   }
               )

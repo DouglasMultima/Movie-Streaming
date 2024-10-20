@@ -40,7 +40,7 @@ import com.compose.moviestreaming.ui.theme.UrbanistFamily
 @Composable
 
 
-fun TextFieldUi(
+fun TextFieldUI(
 
     modifier: Modifier = Modifier,
     value: String = "",
@@ -128,7 +128,7 @@ fun TextFieldUi(
 @PreviewLightDark
 @Composable
 
-fun TextFieldUiPreview(){
+fun TextFieldUIPreview(){
 
     var textValue by remember {
         mutableStateOf("Douglas")
@@ -142,7 +142,7 @@ fun TextFieldUiPreview(){
            verticalArrangement = Arrangement.Center,
            horizontalAlignment = Alignment.CenterHorizontally
        ) {
-           TextFieldUi(
+           TextFieldUI(
                modifier = Modifier.padding(32.dp),
                value = textValue,
                placeholder = "Ex: Douglas Multima",

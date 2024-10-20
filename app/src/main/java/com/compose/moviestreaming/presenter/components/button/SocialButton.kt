@@ -131,7 +131,7 @@ fun SocialButton(
 
 private fun SocialButtonPreview(){
     
-  MovieStreamingTheme(){
+  MovieStreamingTheme{
 
       Column(
           modifier = Modifier
@@ -150,7 +150,7 @@ private fun SocialButtonPreview(){
               onClick = {}
           )
 
-          Spacer(modifier = Modifier.height(16.dp))
+          Spacer(modifier = Modifier.height(20.dp))
 
           SocialButton(
 
@@ -161,7 +161,7 @@ private fun SocialButtonPreview(){
               onClick = {}
           )
 
-          Spacer(modifier = Modifier.height(16.dp))
+          Spacer(modifier = Modifier.height(20.dp))
 
           SocialButton(
 
@@ -172,7 +172,7 @@ private fun SocialButtonPreview(){
               onClick = {}
           )
 
-          Spacer(modifier = Modifier.height(16.dp))
+          Spacer(modifier = Modifier.height(20.dp))
 
           Row(
               modifier = Modifier
