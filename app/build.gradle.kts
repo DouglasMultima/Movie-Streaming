@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -65,6 +66,12 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.viewmodel.compose)
+
+    //Firebase
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.authentication)
+
 
     //Lottie -> Animação
 

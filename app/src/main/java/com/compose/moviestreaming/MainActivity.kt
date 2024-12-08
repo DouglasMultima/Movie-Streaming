@@ -33,6 +33,8 @@ class MainActivity : ComponentActivity() {
                 android.graphics.Color.WHITE
             )
         )
+
+
         setContent {
             MovieStreamingTheme {
               Scaffold(
