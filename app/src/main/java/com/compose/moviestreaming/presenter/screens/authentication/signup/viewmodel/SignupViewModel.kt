@@ -1,6 +1,6 @@
 package com.compose.moviestreaming.presenter.screens.authentication.signup.viewmodel
 
-import android.util.Log
+
 import androidx.lifecycle.ViewModel
 import com.compose.moviestreaming.core.enums.InputType
 import com.compose.moviestreaming.core.enums.InputType.*
@@ -11,19 +11,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class SignupViewModel(
-    private val repository: SignupRepository
-
-) : ViewModel(
+class SignupViewModel: ViewModel(
 
 ) {
 
     private val _state = MutableStateFlow(SignupState())
     val state = _state.asStateFlow()
 
-    init {
-        repository.signup()
-    }
 
     fun submitAction(action: SignupAction) {
         when (action) {
@@ -87,13 +81,3 @@ class SignupViewModel(
     }
 }
 
-interface SignupRepository {
-    fun signup()
-
-}
-
-class SignupRepositoryImpl: SignupRepository {
-    override fun signup() {
-        Log.i("INFOTESTE","signup")
-    }
-}
