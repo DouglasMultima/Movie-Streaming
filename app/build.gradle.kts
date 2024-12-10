@@ -67,6 +67,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.viewmodel.compose)
 
+    //Koin
+
+    implementation(libs.koin.compose)
+
     //Firebase
 
     implementation(platform(libs.firebase.bom))
