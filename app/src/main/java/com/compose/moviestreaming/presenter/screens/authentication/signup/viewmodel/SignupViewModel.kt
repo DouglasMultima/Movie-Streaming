@@ -2,6 +2,7 @@ package com.compose.moviestreaming.presenter.screens.authentication.signup.viewm
 
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.compose.moviestreaming.core.enums.InputType
 import com.compose.moviestreaming.core.enums.InputType.*
 import com.compose.moviestreaming.core.functions.isValidEmail
@@ -11,6 +12,7 @@ import com.compose.moviestreaming.presenter.screens.authentication.signup.state.
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class SignupViewModel (
     private val registerUseCase: RegisterUseCase
@@ -32,6 +34,21 @@ class SignupViewModel (
                 onPasswordVisibilityChange()
 
             }
+
+           is SignupAction.OnSignup -> {
+                onSignup()
+           }
+        }
+    }
+
+    private fun onSignup() {
+        viewModelScope.launch {
+            registerUseCase(
+                email = state.value.email,
+                password = state.value.password
+            )
+
+
         }
     }
 

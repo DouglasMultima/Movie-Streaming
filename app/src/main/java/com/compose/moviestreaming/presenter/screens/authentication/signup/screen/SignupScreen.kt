@@ -61,7 +61,7 @@ fun SignupScreen(
     onBackPressed: () -> Unit
 ){
     val viewModel  = koinViewModel<SignupViewModel>()
-    val state = viewModel.state.collectAsState().value
+    val state by viewModel.state.collectAsState()
 
     SignupContent(
         state = state,
@@ -215,7 +215,7 @@ fun SignupContent(
                     text = stringResource(id = R.string.label_button_signup_screen),
                     isLoading = false,
                     enabled = state.enableSignupButton,
-                    onClick = {},
+                    onClick = {action(SignupAction.OnSignup)},
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
