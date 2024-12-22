@@ -1,11 +1,13 @@
 package com.compose.moviestreaming.presenter.screens.authentication.signup.viewmodel
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.compose.moviestreaming.core.enums.InputType
 import com.compose.moviestreaming.core.enums.InputType.*
 import com.compose.moviestreaming.core.functions.isValidEmail
+import com.compose.moviestreaming.core.helper.FirebaseHelper
 import com.compose.moviestreaming.domain.remote.usecase.authentication.RegisterUseCase
 import com.compose.moviestreaming.presenter.screens.authentication.signup.action.SignupAction
 import com.compose.moviestreaming.presenter.screens.authentication.signup.state.SignupState
@@ -43,10 +45,24 @@ class SignupViewModel (
 
     private fun onSignup() {
         viewModelScope.launch {
-            registerUseCase(
-                email = state.value.email,
-                password = state.value.password
-            )
+           try {
+
+               registerUseCase(
+                   email = state.value.email,
+                   password = state.value.password
+               )
+
+           }catch (exception: Exception){
+               exception.printStackTrace()
+
+               _state.update { currentState ->
+                   currentState.copy(
+                       hasError = true,
+                       error = FirebaseHelper.validError(exception.message)
+                   )
+               }
+
+           }
 
 
         }
@@ -90,7 +106,7 @@ class SignupViewModel (
     }
 
     private fun enableSignupButton() {
-        val emailValid = isValidEmail(_state.value.email)
+        val emailValid =isValidEmail(_state.value.email)
         val passwordValid = _state.value.email.isNotBlank()
 
         _state.update { currentState ->
