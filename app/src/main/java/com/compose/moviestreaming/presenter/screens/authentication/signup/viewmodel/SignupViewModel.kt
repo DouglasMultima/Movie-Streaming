@@ -1,14 +1,16 @@
 package com.compose.moviestreaming.presenter.screens.authentication.signup.viewmodel
 
 
-import android.util.Log
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.compose.moviestreaming.core.enums.InputType
 import com.compose.moviestreaming.core.enums.InputType.*
 import com.compose.moviestreaming.core.functions.isValidEmail
 import com.compose.moviestreaming.core.helper.FirebaseHelper
+import com.compose.moviestreaming.domain.remote.model.User
 import com.compose.moviestreaming.domain.remote.usecase.authentication.RegisterUseCase
+import com.compose.moviestreaming.domain.remote.usecase.user.SaveUserUseCase
 import com.compose.moviestreaming.presenter.screens.authentication.signup.action.SignupAction
 import com.compose.moviestreaming.presenter.screens.authentication.signup.state.SignupState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +19,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SignupViewModel (
-    private val registerUseCase: RegisterUseCase
+    private val registerUseCase: RegisterUseCase,
+    private val saveUserUseCase: SaveUserUseCase
+
 ): ViewModel(
 
 ) {
@@ -51,6 +55,9 @@ class SignupViewModel (
                    email = state.value.email,
                    password = state.value.password
                )
+
+               saveUserUseCase(user = User(email = state.value.email))
+
 
            }catch (exception: Exception){
                exception.printStackTrace()
