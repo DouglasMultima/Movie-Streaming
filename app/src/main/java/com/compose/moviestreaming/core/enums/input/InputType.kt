@@ -1,4 +1,4 @@
-package com.compose.moviestreaming.core.enums
+package com.compose.moviestreaming.core.enums.input
 
 enum class InputType {
     EMAIL,

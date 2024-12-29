@@ -1,6 +1,6 @@
 package com.compose.moviestreaming.presenter.screens.authentication.signup.action
 
-import com.compose.moviestreaming.core.enums.InputType
+import com.compose.moviestreaming.core.enums.input.InputType
 
 sealed class SignupAction {
 
@@ -12,5 +12,8 @@ sealed class SignupAction {
     data object OnPasswordVisibilityChange : SignupAction()
 
     data object OnSignup : SignupAction()
+
+    data object ResetError : SignupAction()
+
 
 }

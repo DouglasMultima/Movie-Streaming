@@ -4,8 +4,9 @@ package com.compose.moviestreaming.presenter.screens.authentication.signup.viewm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.compose.moviestreaming.core.enums.InputType
-import com.compose.moviestreaming.core.enums.InputType.*
+import com.compose.moviestreaming.core.enums.feedback.FeedbackType
+import com.compose.moviestreaming.core.enums.input.InputType
+import com.compose.moviestreaming.core.enums.input.InputType.*
 import com.compose.moviestreaming.core.functions.isValidEmail
 import com.compose.moviestreaming.core.helper.FirebaseHelper
 import com.compose.moviestreaming.domain.remote.model.User
@@ -44,6 +45,10 @@ class SignupViewModel (
            is SignupAction.OnSignup -> {
                 onSignup()
            }
+
+           is SignupAction.ResetError -> {
+               resetError()
+           }
         }
     }
 
@@ -65,7 +70,7 @@ class SignupViewModel (
                _state.update { currentState ->
                    currentState.copy(
                        hasError = true,
-                       error = FirebaseHelper.validError(exception.message)
+                       feedbackUI = Pair(FeedbackType.ERROR,FirebaseHelper.validError(exception.message))
                    )
                }
 
@@ -121,6 +126,15 @@ class SignupViewModel (
 
         }
 
+    }
+
+    private fun resetError(){
+        _state.update { currentState ->
+            currentState.copy(
+                hasError = false,
+                feedbackUI = null
+            )
+        }
     }
 }
 
