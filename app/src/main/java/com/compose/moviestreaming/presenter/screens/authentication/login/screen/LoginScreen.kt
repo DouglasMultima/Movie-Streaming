@@ -1,5 +1,4 @@
-package com.compose.moviestreaming.presenter.screens.authentication.signup.screen
-
+package com.compose.moviestreaming.presenter.screens.authentication.login.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -20,7 +19,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -48,7 +46,6 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.compose.moviestreaming.R
-import com.compose.moviestreaming.core.enums.feedback.FeedbackType
 import com.compose.moviestreaming.core.enums.input.InputType
 import com.compose.moviestreaming.presenter.components.button.PrimaryButton
 import com.compose.moviestreaming.presenter.components.button.SocialButton
@@ -56,9 +53,9 @@ import com.compose.moviestreaming.presenter.components.divider.HorizontalDivider
 import com.compose.moviestreaming.presenter.components.snackbar.FeedbackUI
 import com.compose.moviestreaming.presenter.components.textfield.TextFieldUI
 import com.compose.moviestreaming.presenter.components.topAppBar.TopAppBarUI
-import com.compose.moviestreaming.presenter.screens.authentication.signup.action.SignupAction
-import com.compose.moviestreaming.presenter.screens.authentication.signup.state.SignupState
-import com.compose.moviestreaming.presenter.screens.authentication.signup.viewmodel.SignupViewModel
+import com.compose.moviestreaming.presenter.screens.authentication.login.action.LoginAction
+import com.compose.moviestreaming.presenter.screens.authentication.login.state.LoginState
+import com.compose.moviestreaming.presenter.screens.authentication.login.viewmodel.LoginViewModel
 import com.compose.moviestreaming.ui.theme.MovieStreamingTheme
 import com.compose.moviestreaming.ui.theme.UrbanistFamily
 import kotlinx.coroutines.launch
@@ -66,13 +63,13 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 
-fun SignupScreen(
+fun LoginScreen(
     onBackPressed: () -> Unit
 ){
-    val viewModel  = koinViewModel<SignupViewModel>()
+    val viewModel  = koinViewModel<LoginViewModel>()
     val state by viewModel.state.collectAsState()
 
-    SignupContent(
+    LoginContent(
         state = state,
         action = viewModel::submitAction,
         onBackPressed = onBackPressed
@@ -82,9 +79,9 @@ fun SignupScreen(
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 
-fun SignupContent(
-    state: SignupState,
-    action: (SignupAction) -> Unit,
+fun LoginContent(
+    state: LoginState,
+    action: (LoginAction) -> Unit,
     onBackPressed: () -> Unit
 ){
 
@@ -95,15 +92,15 @@ fun SignupContent(
     LaunchedEffect(state.hasError) {
         if(state.hasError){
             scope.launch {
-               val result = snackbarHostState
+                val result = snackbarHostState
                     .showSnackbar(
                         message = context.getString( state.feedbackUI?.second?:R.string.error_generic
                         )
                     )
 
-               if(result == SnackbarResult.Dismissed){
-                   action(SignupAction.ResetError)
-               }
+                if(result == SnackbarResult.Dismissed){
+                    action(LoginAction.ResetError)
+                }
             }
         }
     }
@@ -151,7 +148,7 @@ fun SignupContent(
                 Spacer(modifier = Modifier.height(48.dp))
 
                 Text(
-                    text = stringResource(id = R.string.label_title_signup_screen),
+                    text = stringResource(id = R.string.label_title_login_screen),
                     style = TextStyle(
                         fontSize = 32.sp,
                         lineHeight = 38.4.sp,
@@ -183,8 +180,8 @@ fun SignupContent(
                     },
                     onValueChange = {
                         action(
-                            SignupAction.OnValueChange(
-                               value = it,
+                            LoginAction.OnValueChange(
+                                value = it,
                                 type = InputType.EMAIL
                             ))
                     },
@@ -213,7 +210,7 @@ fun SignupContent(
                         if(state.password.isNotEmpty()){
                             IconButton(
                                 onClick = {
-                                   action(SignupAction.OnPasswordVisibilityChange)
+                                    action(LoginAction.OnPasswordVisibilityChange)
 
                                 },
                                 content = {
@@ -238,14 +235,14 @@ fun SignupContent(
 
                     },
                     visualTransformation = if (state.passwordVisibility){
-                            VisualTransformation.None
-                        }else{
-                            PasswordVisualTransformation()
-                        },
+                        VisualTransformation.None
+                    }else{
+                        PasswordVisualTransformation()
+                    },
 
                     onValueChange = {
                         action(
-                            SignupAction.OnValueChange(
+                            LoginAction.OnValueChange(
                                 value = it,
                                 type = InputType.PASSWORD
                             ))
@@ -258,8 +255,23 @@ fun SignupContent(
                 PrimaryButton(
                     text = stringResource(id = R.string.label_button_signup_screen),
                     isLoading = false,
-                    enabled = state.enableSignupButton,
-                    onClick = {action(SignupAction.OnSignup)},
+                    enabled = state.enableSignInButton,
+                    onClick = {action(LoginAction.OnSignIn)},
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Text(
+                    text = stringResource(id = R.string.label_forgot_password_login_screen),
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        lineHeight = 22.4.sp,
+                        fontFamily = UrbanistFamily,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MovieStreamingTheme.colorScheme.defaultColor,
+                        textAlign = TextAlign.Center,
+                        letterSpacing = 0.2.sp
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -315,7 +327,7 @@ fun SignupContent(
                 ) {
 
                     Text(
-                        text = stringResource(id = R.string.label_sign_in_signup_screen),
+                        text = stringResource(id = R.string.label_sign_in_account_signup_screen),
                         style = TextStyle(
 
                             lineHeight = 19.6.sp,
@@ -330,7 +342,7 @@ fun SignupContent(
                     Spacer(modifier = Modifier.width(8.dp))
 
                     Text(
-                        text =  stringResource(id = R.string.label_sign_in_signup_screen),
+                        text =  stringResource(id = R.string.label_sign_up_login_screen),
                         style = TextStyle(
 
                             lineHeight = 19.6.sp,
@@ -358,10 +370,10 @@ fun SignupContent(
 @PreviewLightDark
 @Composable
 
-private fun SignupPreview(){
+private fun LoginPreview(){
     MovieStreamingTheme{
-        SignupContent(
-            state = SignupState(),
+        LoginContent(
+            state = LoginState(),
             action = {},
             onBackPressed = {}
         )
